@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Usuarios</title>
+
+<style>
+body{
+font-family: Arial;
+background:#f2f2f2;
+padding:20px;
+}
+
+.container{
+background:white;
+padding:20px;
+border-radius:10px;
+max-width:500px;
+margin:auto;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:5px 0;
+}
+
+button{
+padding:10px;
+background:#007bff;
+color:white;
+border:none;
+cursor:pointer;
+margin-top:10px;
+}
+
+ul{
+margin-top:20px;
+}
+
+li{
+background:#eee;
+padding:10px;
+margin:5px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Sistema de Usuarios</h1>
+
+<h2>Iniciar Sesión</h2>
+
+<input type="text" placeholder="Usuario">
+<input type="password" placeholder="Contraseña">
+<button>Ingresar</button>
+
+<h2>Registro</h2>
+
+<input type="text" id="nombre" placeholder="Nombre">
+<input type="email" id="correo" placeholder="Correo">
+
+<button onclick="agregarUsuario()">Registrar Usuario</button>
+
+<h2>Usuarios Registrados</h2>
+
+<ul id="listaUsuarios"></ul>
+
+</div>
+
+<script>
+
+function agregarUsuario(){
+
+let nombre=document.getElementById("nombre").value;
+let correo=document.getElementById("correo").value;
+
+if(nombre==="" || correo===""){
+alert("Complete los campos");
+return;
+}
+
+let lista=document.getElementById("listaUsuarios");
+
+let item=document.createElement("li");
+
+item.innerHTML=
+nombre+" - "+correo+
+' <button onclick="editarUsuario(this)">Editar</button> '+
+' <button onclick="eliminarUsuario(this)">Eliminar</button>';
+
+lista.appendChild(item);
+
+document.getElementById("nombre").value="";
+document.getElementById("correo").value="";
+}
+
+function eliminarUsuario(boton){
+boton.parentElement.remove();
+}
+
+function editarUsuario(boton){
+
+let nuevoNombre=prompt("Nuevo nombre:");
+
+if(nuevoNombre){
+boton.parentElement.firstChild.textContent=nuevoNombre+" ";
+}
+
+}
+
+</script>
+
+</body>
+</html>
